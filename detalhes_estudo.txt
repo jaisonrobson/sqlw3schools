@@ -1,0 +1,7 @@
+A principio eu ja estava estudando este curso e cheguei ate a metade do mesmo mas não me dei o trabalho de relatar em lugar algum os comandos e tudo que eu testei portanto, para detalhar melhor o meu estudo (os comandos utilizados e toda a pesquisa que foi/sera feita), estou reiniciando o estudo deste mini curso de pratico de sql no w3schools.
+
+Devo ressaltar que o proprio website oferece uma ferramenta online para testes dos comandos assim como uma database publicamente visivel ao usuario, acredito que ela fique no cache do navegador pois ao altera-la percebi que os registros não eram "resetados" de volta ao padrão quando fechei a pagina.
+
+1. SQL Select
+
+
