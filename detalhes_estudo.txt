@@ -1,7 +1,51 @@
-A principio eu ja estava estudando este curso e cheguei ate a metade do mesmo mas não me dei o trabalho de relatar em lugar algum os comandos e tudo que eu testei portanto, para detalhar melhor o meu estudo (os comandos utilizados e toda a pesquisa que foi/sera feita), estou reiniciando o estudo deste mini curso de pratico de sql no w3schools.
+A principio eu ja estava estudando este curso e cheguei ate a metade do mesmo mas não me dei o trabalho de relatar em lugar algum os comandos e tudo que eu testei portanto, para detalhar melhor o meu estudo (os comandos utilizados e toda a pesquisa que foi/sera feita), estou reiniciando o estudo deste mini curso pratico de sql no w3schools.
 
 Devo ressaltar que o proprio website oferece uma ferramenta online para testes dos comandos assim como uma database publicamente visivel ao usuario, acredito que ela fique no cache do navegador pois ao altera-la percebi que os registros não eram "resetados" de volta ao padrão quando fechei a pagina.
 
+Estarei utilizando a tabela [Employees] para me diferenciar um pouco dos comandos padrão da pagina do tutorial
+
 1. SQL Select
 
+SELECT * FROM [Employees]
+SELECT birthdate, photo FROM [Employees]
+SELECT employeeid, notes, lastname FROM [Employees]
+SELECT lastname, employeeid, notes, lastname FROM [Employees]
 
+2. SQL Select Distinct (nunca retorna valores repetidos)
+
+obs: para esse topico utilizei a tabela [OrderDetails]
+
+SELECT * FROM [OrderDetails]
+SELECT distinct * FROM [OrderDetails]
+SELECT distinct orderid FROM [OrderDetails]
+SELECT distinct orderid, productid FROM [OrderDetails]
+SELECT distinct orderid, distinct productid FROM [OrderDetails] -- deu erro
+SELECT orderid, distinct productid FROM [OrderDetails] -- deu erro
+
+3. SQL Where Clause
+
+SELECT lastname FROM [Employees] where lastname = 'Suyama'
+SELECT lastname, firstname, birthdate, photo FROM [Employees] where lastname = 'Suyama'
+SELECT distinct lastname, firstname, birthdate, photo FROM [Employees] where employeeid > 5
+SELECT firstname FROM [Employees] where employeeid != 5
+SELECT firstname FROM [Employees] where employeeid between 5 and 10
+SELECT notes FROM [Employees] where notes like 'company' -- 0 resultados
+SELECT notes FROM [Employees] where notes like '%company' -- 0 resultados
+SELECT notes FROM [Employees] where notes like '%company%' -- 3 resultados
+SELECT * FROM [Employees] where firstname in ('Nancy', 'Michael') -- 2 resultados
+SELECT * FROM [Employees] where firstname in ('Nancy', 'Michael', like '%a%') -- deu erro
+
+4. SQL And, Or, Not
+
+obs: a partir deste topico passarei a utilizar a tabela 'products'
+
+SELECT * FROM [Products]
+SELECT * FROM [Products] where price between 10 and 20 AND categoryid not 3 -- deu erro
+SELECT * FROM [Products] where price between 10 and 20 AND categoryid != 3 -- 22 resultados, parece que o between possui o valor final exclusivo pois nenhum registro com valor 20 foi retornado.
+SELECT * FROM [Products] where price between 10 and 20 and categoryid != 3 OR categoryid = 3 and price >= 30 -- 26 resultados
+SELECT distinct price FROM [Products] where price between 10 and 20 and categoryid != 3 OR categoryid = 3 and price >= 30 -- 18 resultados
+select * from products where not price > 20 and categoryid = 1 -- 10 resultados
+select * from products where not price > 20 or categoryid = 1 -- 42 resultados
+select * from products where not (price > 20 or categoryid = 1) -- 30 resultados
+select * from products where not (price > 20 and categoryid = 1) -- 75 resultados
+select * from products where not price > 20 and not categoryid = 1 -- 30 resultados -- aparentemente essa instrucao pode ser simplificada com o uso de parenteses e a inversao do operador AND para OR
